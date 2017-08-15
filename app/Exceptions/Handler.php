@@ -7,9 +7,9 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Log;
 use Mail;
-use Pasify\Mail\ExceptionOccured;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use Symfony\Component\Debug\Exception\FlattenException;
+use TravelPlanner\Mail\ExceptionOccured;
 
 class Handler extends ExceptionHandler
 {

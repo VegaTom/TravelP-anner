@@ -21,3 +21,14 @@ $factory->define(TravelPlanner\Models\User::class, function (Faker\Generator $fa
         'password' => $password ?: $password = bcrypt('secret'),
     ];
 });
+
+$factory->define(TravelPlanner\Models\Trip::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'destination' => $faker->city,
+        'start_date' => \Carbon\Carbon::now()->addDays(random_int(1, 4))->toW3cString(),
+        'end_date' => \Carbon\Carbon::now()->addDays(5)->toW3cString(),
+        'comment' => rand(0, 1) ? $faker->realText(20) : null,
+    ];
+});

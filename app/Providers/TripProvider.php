@@ -4,7 +4,7 @@ namespace TravelPlanner\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class UserProvider extends ServiceProvider
+class TripProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -13,7 +13,7 @@ class UserProvider extends ServiceProvider
      */
     public function boot()
     {
-        \TravelPlanner\Models\User::observe(\TravelPlanner\Observers\UserObserver::class);
+        \TravelPlanner\Models\Trip::observe(\TravelPlanner\Observers\TripObserver::class);
     }
 
     /**
