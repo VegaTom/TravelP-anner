@@ -5,8 +5,9 @@ namespace TravelPlanner\Http\Controllers\Auth;
 use DB;
 use JWTAuth;
 use TravelPlanner\Http\Controllers\Controller;
-use TravelPlanner\Http\Requests\UserRegisterRequest;
+use TravelPlanner\Http\Requests\User\RegisterRequest;
 use TravelPlanner\Models\User;
+use TravelPlanner\Transformers\UserTransformer;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 /**
@@ -30,21 +31,19 @@ class RegisterController extends Controller
     /**
      * Handle a register request.
      *
-     * @param  \TravelPlanner\Http\Requests\UserRegisterRequest  $request
+     * @param  \TravelPlanner\Http\Requests\User\RegisterRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(UserRegisterRequest $request)
+    public function register(RegisterRequest $request)
     {
         // grab credentials from the request
         return DB::transaction(function () use ($request) {
-
             try {
-                return $this->response->withArray([
-                    'token' => JWTAuth::fromUser(
-                        User::create($request->only('email', 'name', 'password'))
-                            ->setUserRole(false)
-                    ),
-                ])->setStatusCode(201);
+                $user = User::create($request->only('email', 'name', 'password'))
+                    ->setUserRole(false);
+                $token = JWTAuth::fromUser($user);
+
+                return $this->response->withItem($user, new UserTransformer, null, compact('token'))->setStatusCode(201);
 
             } catch (JWTException $e) {
                 // something went wrong whilst attempting to encode the token

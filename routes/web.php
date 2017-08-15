@@ -15,18 +15,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'authenticate', 'as' => 'authenticate', 'namespace' => 'Auth'], function () {
+Route::group(['namespace' => 'Auth'], function () {
 
-    Route::post('/', ['as' => '.backend.login', 'uses' => 'LoginController@login']);
-    Route::get('/', ['as' => '.backend.info', 'uses' => 'LoginController@info'])->middleware(['TokenRefresh', 'jwt.auth']);
+    Route::group(['prefix' => 'authenticate', 'as' => 'authenticate'], function () {
 
-    Route::delete('/', ['as' => '.logout', 'uses' => 'LoginController@logout'])->middleware(['jwt.auth']);
+        Route::post('/', ['as' => '.login', 'uses' => 'LoginController@login']);
+        Route::get('/', ['as' => '.info', 'uses' => 'LoginController@info'])->middleware(['jwt.auth']);
 
-});
+        Route::delete('/', ['as' => '.logout', 'uses' => 'LoginController@logout'])->middleware(['jwt.auth']);
 
-Route::group(['prefix' => 'password', 'as' => '.password', 'namespace' => 'Auth'], function () {
-    Route::post('/', ['as' => '.password.request.recovery', 'uses' => 'PasswordController@passwordRequestRecovery']);
-    Route::get('/{email}/{token}', ['as' => '.password.recovery', 'uses' => 'PasswordController@passwordRecovery']);
+    });
+
+    Route::group(['prefix' => 'password', 'as' => 'password'], function () {
+        Route::post('/', ['as' => '.password.request.recovery', 'uses' => 'PasswordController@passwordRequestRecovery']);
+        Route::get('/{email}/{token}', ['as' => '.password.recovery', 'uses' => 'PasswordController@passwordRecovery']);
+    });
+
+    Route::post('/register', ['as' => 'register', 'uses' => 'RegisterController@register']);
+
 });
 
 Route::get('/admin/{a?}/{b?}/{c?}/{d?}/{e?}/{f?}/{g?}', ['as' => 'init.admin', function () {

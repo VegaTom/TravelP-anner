@@ -3,8 +3,6 @@
 namespace TravelPlanner\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use TravelPlanner\Models\User;
-use TravelPlanner\Observers\UserObserver;
 
 class UserProvider extends ServiceProvider
 {
@@ -15,7 +13,7 @@ class UserProvider extends ServiceProvider
      */
     public function boot()
     {
-        User::observe(UserObserver::class);
+        \TravelPlanner\Models\User::observe(\TravelPlanner\Observers\UserObserver::class);
     }
 
     /**
@@ -24,5 +22,7 @@ class UserProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {}
+    {
+        //
+    }
 }

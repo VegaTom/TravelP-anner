@@ -9,6 +9,7 @@ use JWTAuth;
 use JWTException;
 use TravelPlanner\Http\Controllers\Controller;
 use TravelPlanner\Models\User;
+use TravelPlanner\Transformers\UserTransformer;
 
 /**
  * @resource Login
@@ -62,18 +63,18 @@ class LoginController extends Controller
         try {
             // attempt to verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return $this->response->errorUnauthorized(__('general.errors.invalid_credentials'));
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return $this->response->errorInternalError(__('general.errors.could_not_create_token'));
         }
 
         $user = JWTAuth::toUser($token);
 
         // all good so return the token
         $user->removePasswordRecoveryToken();
-        return response()->json(compact('token', 'user'), 200);
+        return $this->response->withItem($user, new UserTransformer, null, compact('token'));
     }
 
     /**
@@ -85,17 +86,20 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         JWTAuth::invalidate(JWTAuth::getToken());
-        return response()->json('', 204);
+        return $this->response->withArray([])->setStatusCode(204);
     }
 
     /**
-     * Retrieves user info for backend.
+     * Retrieves user info and renews the token.
      *
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function info(Request $request)
     {
-        return response()->json(JWTAuth::parseToken()->toUser(), 200);
+        $user = JWTAuth::parseToken()->toUser();
+        $token = JWTAuth::parseToken()->refresh();
+
+        return $this->response->withItem($user, new UserTransformer, null, compact('token'));
     }
 }

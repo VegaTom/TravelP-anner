@@ -2,7 +2,6 @@
 
 namespace TravelPlanner\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +12,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'TravelPlanner\Model' => 'TravelPlanner\Policies\ModelPolicy',
+        \TravelPlanner\Models\Trip::class => \TravelPlanner\Policies\TripPolicy::class,
+        \TravelPlanner\Models\User::class => \TravelPlanner\Policies\UserPolicy::class,
     ];
 
     /**

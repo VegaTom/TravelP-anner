@@ -181,6 +181,9 @@ return [
         TravelPlanner\Providers\EventServiceProvider::class,
         TravelPlanner\Providers\RouteServiceProvider::class,
 
+        TravelPlanner\Providers\RoleProvider::class,
+        TravelPlanner\Providers\RouteProvider::class,
+        TravelPlanner\Providers\TripProvider::class,
         TravelPlanner\Providers\UserProvider::class,
 
     ],
