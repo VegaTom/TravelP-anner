@@ -1,0 +1,69 @@
+{
+  "name": "travel_planner",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "bootstrap": "^3.2.0",
+    "angular-animate": "^1.4.0",
+    "angular-cookies": "^1.4.0",
+    "angular-messages": "^1.4.0",
+    "angular-resource": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-sanitize": "^1.4.0",
+    "AngularJS-Toaster": "angularjs-toaster#~1.2.0",
+    "ng-file-upload": "~12.0.4",
+    "please-wait": "~0.0.5",
+    "datatables": "DataTables#~1.10.11",
+    "jszip": "Stuk/jszip#~2.6.0",
+    "angular-moment": "~0.10.3",
+    "moment": "~2.12.0",
+    "ng-dialog": "~0.5.9",
+    "angular-datatables": "~0.5.4",
+    "textAngular": "~1.5.0",
+    "font-awesome": "~4.5.0",
+    "rangy": "~1.3.0",
+    "components-font-awesome": "~4.5.0",
+    "datatables.net-buttons": "~1.1.2",
+    "datatables.net-buttons-dt": "~1.1.2",
+    "angular-spectrum-colorpicker": "~1.4.5",
+    "angular-jwt": "^0.1.9",
+    "ngstorage": "^0.3.11",
+    "ngSweetAlert": "angular-sweetalert#^1.1.2",
+    "angular-ui-select": "^0.19.6",
+    "angular-bootstrap-switch": "^0.5.1",
+    "angular-bootstrap": "^2.5.0",
+    "ui-cropper": "^1.0.4",
+    "angular-translate": "^2.15.1",
+    "angular-translate-loader-url": "^2.15.1",
+    "angular-translate-loader-static-files": "^2.15.1",
+    "angular-chart.js": "^1.1.1",
+    "angular-ui-switch": "^0.1.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0",
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0",
+    "angular-translate": "^2.15.1"
+  },
+  "appPath": "app",
+  "moduleName": "travelPlannerApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": "1.6.5",
+    "ng-dialog": "^1.0.1",
+    "ng-file-upload": "^12.2.13",
+    "angular-datatables": "^2.3.0",
+    "moment": "~2.12.0",
+    "jquery": ">=1.9.0"
+  }
+}
