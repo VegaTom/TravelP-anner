@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use JWTException;
 use TravelPlanner\Http\Controllers\Controller;
+use TravelPlanner\Http\Requests\Login\Request as LoginRequest;
 use TravelPlanner\Models\User;
 use TravelPlanner\Transformers\UserTransformer;
 
@@ -52,10 +53,10 @@ class LoginController extends Controller
     /**
      * Handle a login request to the Backend.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \TravelPlanner\Http\Requests\Login\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         // grab credentials from the request
         $credentials = $request->only('email', 'password');
