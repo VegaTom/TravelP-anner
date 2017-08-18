@@ -51,7 +51,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Handle a login request to the Backend.
+     * Handle a login request.
      *
      * @param  \TravelPlanner\Http\Requests\Login\Request  $request
      * @return \Illuminate\Http\Response

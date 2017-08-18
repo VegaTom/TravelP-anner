@@ -46,12 +46,12 @@ class User extends Authenticatable
 
     public function adminRole()
     {
-        return $this->roles()->where('level', 1);
+        return $this->roles()->adminRole();
     }
 
     public function userRole()
     {
-        return $this->roles()->where('level', 4);
+        return $this->roles()->userRole();
     }
 
     public function setPasswordAttribute($password)
@@ -117,7 +117,7 @@ class User extends Authenticatable
     public function scopeWithUserRole($query)
     {
         return $query->whereHas('roles', function ($roles) {
-            $roles->where('level', 2);
+            $roles->userRole();
         });
     }
 
@@ -126,7 +126,7 @@ class User extends Authenticatable
         return $query
             ->withUserRole()
             ->whereHas('roles', function ($roles) {
-                $roles->whereLevel(1);
+                $roles->adminRole();
             }, '<');
     }
 

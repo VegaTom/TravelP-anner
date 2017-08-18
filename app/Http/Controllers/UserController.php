@@ -27,7 +27,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get all Users
+     *
+     * Gets all the users.
      *
      * @param  \TravelPlanner\Http\Requests\User\IndexRequest  $request
      * @return \Illuminate\Http\Response
@@ -38,7 +40,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the Users
+     *
+     * Shows the specified user.
      *
      * @param  \TravelPlanner\Http\Requests\User\ShowRequest  $request
      * @param  $id
@@ -50,7 +54,9 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the Users
+     *
+     * Updates the specified user.
      *
      * @param  \TravelPlanner\Http\Requests\User\UpdateRequest  $request
      * @param  $id
@@ -59,11 +65,15 @@ class UserController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $user = $this->users->findOrFail($id);
-        return $this->response->withItem($this->users->update($user, $request->only('name', 'email')), new UserTransformer);
+        return $this->response->withItem($this->users->update($user,
+            collect($request->toArray())->only('name', 'email')->toArray()
+        ), new UserTransformer);
     }
 
     /**
-     * Toggle the Admin Role.
+     * Toggle admin role
+     *
+     * Toggles the admin role over the given user.
      *
      * @param  \TravelPlanner\Http\Requests\User\ToggleAdminRequest  $request
      * @param  $id
@@ -76,7 +86,9 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete the Users
+     *
+     * Deletes the specified user.
      *
      * @param  \TravelPlanner\Http\Requests\User\DeleteRequest  $request
      * @param  $id
@@ -92,7 +104,10 @@ class UserController extends Controller
     }
 
     /**
-     * Get the travels for given user.
+     * Get Trips
+     *
+     * Gets all the trips on storage for the given user.
+     * May be filtered by destination, start_date and/or end_date.
      *
      * @param  \TravelPlanner\Http\Requests\User\TripsRequest  $request
      * @param  $id

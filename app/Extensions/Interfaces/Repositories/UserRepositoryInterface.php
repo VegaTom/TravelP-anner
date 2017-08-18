@@ -15,10 +15,26 @@ use TravelPlanner\Models\User;
 interface UserRepositoryInterface extends RepositoryInterface
 {
 
+    /**
+     * Get all Users
+     *
+     * Gets all the users.
+     **/
     public function getAllSortedByName();
 
+    /**
+     * Toggle admin role
+     *
+     * Toggles the admin role over the given user.
+     **/
     public function toggleAdminRole(User $user);
 
+    /**
+     * Get Trips
+     *
+     * Gets all the trips on storage for the given user.
+     * May be filtered by destination, start_date and/or end_date.
+     **/
     public function getTrips(User $user, Request $request);
 
 }

@@ -30,7 +30,7 @@ class TripPolicy
      */
     public function create(User $user)
     {
-        return $true;
+        return true;
     }
 
     /**

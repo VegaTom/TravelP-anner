@@ -15,6 +15,12 @@ use TravelPlanner\Models\Trip;
 interface TripRepositoryInterface extends RepositoryInterface
 {
 
+    /**
+     * Get all Trips
+     *
+     * Gets all the trips on storage. May be filtered by destination,
+     * start_date and/or end_date.
+     **/
     public function getAll(Request $request);
 
 }

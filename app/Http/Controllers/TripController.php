@@ -25,7 +25,10 @@ class TripController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get all Trips
+     *
+     * Gets all the trips on storage. May be filtered by destination,
+     * start_date and/or end_date.
      *
      * @param  \TravelPlanner\Http\Requests\Trip\IndexRequest  $request
      * @return \Illuminate\Http\Response
@@ -36,18 +39,23 @@ class TripController extends Controller
     }
 
     /**
-     * Store a new resource in storage.
+     * Creates a new Trip
+     *
+     * If there is no given user_id then the trip will be
+     * assigned to the logged user.
      *
      * @param  \TravelPlanner\Http\Requests\Trip\StoreRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
     {
-        return $this->response->withItem($this->trips->create($request->only('destination', 'start_date', 'end_date', 'comment', 'user_id')), new TripTransformer);
+        return $this->response->withItem($this->trips->create($request->only('destination', 'start_date', 'end_date', 'comment', 'user_id')), new TripTransformer)->setStatusCode(201);
     }
 
     /**
-     * Display the specified resource.
+     * Show the trip.
+     *
+     * Shows the given trip.
      *
      * @param  \TravelPlanner\Http\Requests\Trip\ShowRequest  $request
      * @param  $id
@@ -59,7 +67,9 @@ class TripController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the trip.
+     *
+     * Updates the given trip.
      *
      * @param  \TravelPlanner\Http\Requests\Trip\UpdateRequest  $request
      * @param  $id
@@ -68,11 +78,15 @@ class TripController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $trip = $this->trips->findOrFail($id);
-        return $this->response->withItem($this->trips->update($trip, $request->only('destination', 'start_date', 'end_date', 'comment')), new TripTransformer);
+        return $this->response->withItem($this->trips->update($trip,
+            collect($request->toArray())->only('destination', 'start_date', 'end_date', 'comment')->toArray()
+        ), new TripTransformer);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete the trip.
+     *
+     * Deletes the given trip.
      *
      * @param  \TravelPlanner\Http\Requests\Trip\DeleteRequest  $request
      * @param  $id

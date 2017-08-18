@@ -22,7 +22,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get all Routes
+     *
+     * Gets all the routes.
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,7 +35,9 @@ class RouteController extends Controller
     }
 
     /**
-     * Toggles permission to the specified role to route.
+     * Toggle role permission
+     *
+     * Toggles the permission over the given role_id.
      *
      * @param  \Pasify\Http\Requests\Route\UpdateRequest  $request
      * @param  int  $id

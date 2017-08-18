@@ -31,6 +31,7 @@ class StoreRequest extends BaseRequest
             'start_date' => 'required|date_format:Y-m-d\TH:i:sP',
             'end_date' => 'required|date_format:Y-m-d\TH:i:sP|after:start_date',
             'user_id' => [
+                'sometimes',
                 'required',
                 Rule::exists('users', 'id')->using(function ($q) {
                     if (!$this->user()->is_admin) {

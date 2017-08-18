@@ -8,12 +8,29 @@ use Tests\TestCase;
 class RegisterTest extends TestCase
 {
     use DatabaseTransactions;
+
     /**
-     * Register Test Case.
+     * Invañod register Test Case.
      *
      * @return void
      */
-    public function testRegiester()
+    public function testInvalidRegister()
+    {
+        $data = [
+            'email' => 'test@travelplanner.com',
+            'password' => 'secret',
+        ];
+        $this->postJson('register', $data)
+            ->assertStatus(422)
+            ->assertJsonStructure(['name', 'password', 'password_confirmation']);
+    }
+
+    /**
+     * Valid register Test Case.
+     *
+     * @return void
+     */
+    public function testValidRegister()
     {
         $data = [
             'email' => 'test@travelplanner.com',
@@ -21,9 +38,6 @@ class RegisterTest extends TestCase
             'password' => 'secret',
             'password_confirmation' => 'secret',
         ];
-        $this->postJson('register', collect($data)->only('email', 'password')->toArray())
-            ->assertStatus(422)
-            ->assertJsonStructure(['name', 'password', 'password_confirmation']);
 
         $this->postJson('register', $data)
             ->assertStatus(201)

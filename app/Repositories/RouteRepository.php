@@ -14,13 +14,21 @@ class RouteRepository extends AbstractRepository implements RouteRepositoryInter
         $this->model = $model;
     }
 
-    // This class only implements methods specific to the UserRepository
-
+    /**
+     * Get all Routes
+     *
+     * Gets all the routes.
+     **/
     public function getAllSortedByName()
     {
         return $this->model->orderBy('name')->get();
     }
 
+    /**
+     * Toggle role permission
+     *
+     * Toggles the permission over the given role_id.
+     **/
     public function toggleRole(Route $route, $role)
     {
         return DB::transaction(function () use ($route, $role) {

@@ -14,18 +14,33 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->model = $model;
     }
 
-    // This class only implements methods specific to the UserRepository
+    /**
+     * Get all Users
+     *
+     * Gets all the users.
+     **/
     public function getAllSortedByName()
     {
         return $this->model->orderBy('name')->get();
     }
 
+    /**
+     * Toggle admin role
+     *
+     * Toggles the admin role over the given user.
+     **/
     public function toggleAdminRole(User $user)
     {
         $user->toggleAdminRole();
         return $user;
     }
 
+    /**
+     * Get Trips
+     *
+     * Gets all the trips on storage for the given user.
+     * May be filtered by destination, start_date and/or end_date.
+     **/
     public function getTrips(User $user, Request $request)
     {
         return $user->trips()

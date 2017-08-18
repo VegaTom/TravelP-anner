@@ -48,6 +48,16 @@ class Role extends BaseModel
         return $query->where('level', 2);
     }
 
+    public function scopeAdmin($query)
+    {
+        return $query->adminRole()->first();
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->userRole()->first();
+    }
+
     public function getIsUserRoleAttribute()
     {
         return $this->level == 2;

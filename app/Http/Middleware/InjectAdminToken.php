@@ -4,6 +4,12 @@ namespace TravelPlanner\Http\Middleware;
 
 use Closure;
 
+/*
+ * Middleware InjectAdminToken
+ *
+ * Allows authentication over every route as admin.
+ * Only for apidoc generation.
+ */
 class InjectAdminToken
 {
     /**

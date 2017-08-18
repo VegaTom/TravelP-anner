@@ -2,6 +2,7 @@
 
 namespace TravelPlanner\Repositories;
 
+use DB;
 use Illuminate\Http\Request;
 use TravelPlanner\Extensions\Interfaces\Repositories\TripRepositoryInterface;
 use TravelPlanner\Models\Trip;
@@ -14,6 +15,12 @@ class TripRepository extends AbstractRepository implements TripRepositoryInterfa
         $this->model = $model;
     }
 
+    /**
+     * Get all Trips
+     *
+     * Gets all the trips on storage. May be filtered by destination,
+     * start_date and/or end_date.
+     **/
     public function getAll(Request $request)
     {
         return $this->model
@@ -28,5 +35,21 @@ class TripRepository extends AbstractRepository implements TripRepositoryInterfa
                 return $q->where('end_date', '<=', Carbon::createFromFormat('Y-m-d\TH:i:sP', $request->end_date)->setTimezone('UTC'));
             })
             ->get();
+    }
+
+    /**
+     * Creates a new Trip
+     *
+     * If there is no given user_id then the trip will be
+     * assigned to the logged user.
+     **/
+    public function create(array $attributes)
+    {
+        return DB::transaction(function () use ($attributes) {
+            if (empty($attributes['user_id'])) {
+                return \Request::user()->trips()->create($attributes);
+            }
+            return $this->model->create($attributes);
+        });
     }
 }
