@@ -21,7 +21,7 @@ class InjectAdminToken
      */
     public function handle($request, Closure $next)
     {
-        #$request->headers->add(['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb3VyY2UiOiJ3ZWIiLCJzdXBwb3J0Ijp0cnVlLCJzdWIiOiIzYWYzMmVkMC0wMWI5LTRjMmQtOGY0Zi00YjdmMjllMDM1MzEiLCJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXV0aGVudGljYXRlIiwiaWF0IjoxNDk3NjI5MDE0LCJleHAiOjE0OTgyMDUwMTQsIm5iZiI6MTQ5NzYyOTAxNCwianRpIjoiVjZDUDE3SlRyajRwZnNGZyJ9.dY9isv2hWkmou54VbeCC2cI0ZNXF8keQO3gTx57PeQc']);
+        # $request->headers->add(['Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMWYzNGEwNS1hZGI0LTRiZTgtOWEzYi1mMjAxNzgzMGVmMjUiLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXV0aGVudGljYXRlIiwiaWF0IjoxNTAzMTIxOTE3LCJleHAiOjE1MDM2OTc5MTcsIm5iZiI6MTUwMzEyMTkxNywianRpIjoicFdGalBGMmZzc2tYbVluNSJ9.VJSaDliI73u2nqMKc8fpCl8d8cykMTDpqP2P2b47LXU']);
         return $next($request);
     }
 }

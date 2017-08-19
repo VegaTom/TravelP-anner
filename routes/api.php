@@ -11,7 +11,7 @@
 |
  */
 
-Route::group(['prefix' => 'v1', 'as' => '.v1', 'middleware' => [/*'InjectAdminToken',*/'jwt.auth', 'CanUse']], function () {
+Route::group(['prefix' => 'v1', 'as' => '.v1', 'middleware' => ['InjectAdminToken', 'jwt.auth', 'CanUse']], function () {
 
     Route::any('/', ['as' => '.index', function () {return response()->json(['error' => 'Section unavailable'], 503);}]);
 

@@ -10,17 +10,18 @@
         "role": "Developer"
     }],
     "require": {
+        "php": ">=5.6.4",
+        "darkaonline/l5-swagger": "~5.0",
         "doctrine/dbal": "^2.5",
         "ellipsesynergie/api-response": "^0.13.0",
         "guzzlehttp/guzzle": "^6.2",
         "ied3vil/language-switcher": "^1.1",
         "jenssegers/model": "^1.1",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
         "mopo922/laravel-treats": "^1.0",
         "mpociot/laravel-apidoc-generator": "^2.0",
         "paragonie/constant_time_encoding": "^2.0",
-        "php": ">=7.0",
-        "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0",
         "tymon/jwt-auth": "^0.5.9",
         "webpatser/laravel-uuid": "^2.0"
     },

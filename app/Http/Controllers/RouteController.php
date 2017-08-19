@@ -10,6 +10,19 @@ use TravelPlanner\Models\Route;
 use TravelPlanner\Repositories\RouteRepository;
 use TravelPlanner\Transformers\RouteTransformer;
 
+/**
+ * @SWG\Swagger(
+ *   basePath="/api/v1/routes",
+ *   @SWG\Info(
+ *     title="Web routes API",
+ *     version="1.0.0"
+ *   )
+ * )
+ *
+ * @resource Routes
+ *
+ * Allowed actions for Routes.
+ */
 class RouteController extends Controller
 {
     /**
@@ -27,6 +40,16 @@ class RouteController extends Controller
      * Gets all the routes.
      *
      * @return \Illuminate\Http\Response
+     *
+     * @SWG\Get(
+     *   path="/",
+     *   summary="Gets all the routes",
+     *   operationId="index",
+     *
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=500, description="internal server error")
+     * )
+     *
      */
     public function index()
     {
@@ -42,6 +65,29 @@ class RouteController extends Controller
      * @param  \Pasify\Http\Requests\Route\UpdateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @SWG\Put(
+     *   path="/{routeId}/",
+     *   summary="Toggles the permission over the given role_id",
+     *   operationId="getCustomerRates",
+     *   @SWG\Parameter(
+     *     name="routeId",
+     *     in="path",
+     *     description="Target route.",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="role_id",
+     *     in="formData",
+     *     description="The role id to toggle permission on route.",
+     *     required=true,
+     *     type="string",
+     *   ),
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=500, description="internal server error")
+     * )
+     *
      */
     public function update(UpdateRequest $request, $id)
     {

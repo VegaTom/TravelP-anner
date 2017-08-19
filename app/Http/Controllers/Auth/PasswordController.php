@@ -3,8 +3,8 @@
 namespace TravelPlanner\Http\Controllers\Auth;
 
 use TravelPlanner\Http\Controllers\Controller;
-use TravelPlanner\Http\Requests\PasswordRecoveryRequest;
-use TravelPlanner\Http\Requests\PasswordRequestRecoveryRequest;
+use TravelPlanner\Http\Requests\Password\RecoveryRequest;
+use TravelPlanner\Http\Requests\Password\RequestRecoveryRequest;
 use TravelPlanner\Models\User;
 
 /**
@@ -28,10 +28,10 @@ class PasswordController extends Controller
     /**
      * Password Recovery.
      *
-     * @param  \App\Http\Requests\PasswordRecoveryRequest  $request
+     * @param  \App\Http\Requests\Password\RecoveryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function passwordRecovery(PasswordRecoveryRequest $request, $email)
+    public function passwordRecovery(RecoveryRequest $request, $email)
     {
         User::whereEmail($email)->first()->handlePasswordRecovery();
         return view('success')->with('message', __('We have sent you a new email with further instructions'));
@@ -40,10 +40,10 @@ class PasswordController extends Controller
     /**
      * Password Request Recovery.
      *
-     * @param  \App\Http\Requests\PasswordRequestRecoveryRequest  $request
+     * @param  \App\Http\Requests\Password\RequestRecoveryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function passwordRequestRecovery(PasswordRequestRecoveryRequest $request)
+    public function passwordRequestRecovery(RequestRecoveryRequest $request)
     {
         User::whereEmail($request->email)->first()->handlePasswordRecoveryRequest();
         return $this->response->withArray([])->setStatusCode(204);

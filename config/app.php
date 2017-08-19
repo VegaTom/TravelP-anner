@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         LaravelTreats\LaravelTreatsServiceProvider::class,
         Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
@@ -181,6 +182,7 @@ return [
         TravelPlanner\Providers\EventServiceProvider::class,
         TravelPlanner\Providers\RouteServiceProvider::class,
 
+        TravelPlanner\Providers\CustomValidationRulesProvider::class,
         TravelPlanner\Providers\RoleProvider::class,
         TravelPlanner\Providers\RouteProvider::class,
         TravelPlanner\Providers\TripProvider::class,

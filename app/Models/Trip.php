@@ -31,4 +31,5 @@ class Trip extends BaseModel
     {
         $this->attributes['end_date'] = Carbon::createFromFormat('Y-m-d\TH:i:sP', $date)->setTimezone('UTC');
     }
+
 }

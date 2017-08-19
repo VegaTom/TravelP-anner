@@ -86,7 +86,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        JWTAuth::invalidate(JWTAuth::getToken());
+        sJWTAuth::invalidate(JWTAuth::getToken());
         return $this->response->withArray([])->setStatusCode(204);
     }
 

@@ -13,6 +13,11 @@ use TravelPlanner\Models\Trip;
 use TravelPlanner\Repositories\TripRepository;
 use TravelPlanner\Transformers\TripTransformer;
 
+/**
+ * @resource Trips
+ *
+ * Allowed actions for Trips.
+ */
 class TripController extends Controller
 {
     /**

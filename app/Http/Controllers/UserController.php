@@ -15,6 +15,11 @@ use TravelPlanner\Repositories\UserRepository;
 use TravelPlanner\Transformers\TripTransformer;
 use TravelPlanner\Transformers\UserTransformer;
 
+/**
+ * @resource Users
+ *
+ * Allowed actions for Users.
+ */
 class UserController extends Controller
 {
     /**
