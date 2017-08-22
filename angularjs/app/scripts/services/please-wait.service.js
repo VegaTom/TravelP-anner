@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .factory('pleaseWaitService', ['$rootScope', function($rootScope) {
 
         function wait() {

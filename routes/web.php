@@ -27,8 +27,9 @@ Route::group(['namespace' => 'Auth'], function () {
     });
 
     Route::group(['prefix' => 'password', 'as' => '.password'], function () {
-        Route::post('/', ['as' => '.password.request.recovery', 'uses' => 'PasswordController@passwordRequestRecovery']);
-        Route::get('/{email}/{token}', ['as' => '.password.recovery', 'uses' => 'PasswordController@passwordRecovery']);
+        Route::post('/', ['as' => '.request.recovery', 'uses' => 'PasswordController@passwordRequestRecovery']);
+        Route::put('/', ['as' => '.change', 'uses' => 'PasswordController@change']);
+        Route::get('/{email}/{token}', ['as' => '.recovery', 'uses' => 'PasswordController@passwordRecovery']);
     });
 
     Route::post('/register', ['as' => '.register', 'uses' => 'RegisterController@register']);

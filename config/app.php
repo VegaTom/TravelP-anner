@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider::class,
+        ied3vil\LanguageSwitcher\Providers\LanguageSwitcherProvider::class,
         L5Swagger\L5SwaggerServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         LaravelTreats\LaravelTreatsServiceProvider::class,

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .factory('routeService', ['apiService', 'URL_CONST', function(apiService, URL_CONST) {
 
         var URL = URL_CONST.ROUTE;

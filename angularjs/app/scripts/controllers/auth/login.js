@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .controller('loginCtrl', function($scope, $rootScope, $location, toaster, $translate, $timeout, authService) {
 
         $scope.loginData = {};
@@ -24,11 +24,12 @@ angular.module('comunidadDigitalApp')
                     toaster.pop('success', $translate.instant('done'));
 
                     $rootScope.$userInfo.isLogged = true;
-                    $rootScope.$userInfo.full_name = response.data.user.first_name + ' ' + response.data.user.last_name;
-                    $rootScope.$userInfo.location = response.data.user.location;
-                    $rootScope.$userInfo.id_token = response.data.token;
-                    $rootScope.$userInfo.id = response.data.user.id;
-                    $rootScope.$userInfo.role = response.data.user.role;
+                    $rootScope.$userInfo.id = response.data.data.id;
+                    $rootScope.$userInfo.name = response.data.data.name;
+                    $rootScope.$userInfo.id_token = response.data.meta.token;
+                    $rootScope.$userInfo.roles = response.data.data.roles.data.map(function(role) {
+                      return role.level;
+                    });
                     $rootScope.$userInfo.remember = $scope.remember;
 
                     $timeout(function() {
@@ -36,10 +37,16 @@ angular.module('comunidadDigitalApp')
                     }, 500);
 
                 }, function(response) {
-                    toaster.pop('error', response.status, response.statusText);
-                    console.log(response.data.error);
                     $scope.blockButton = false;
                     $scope.message = 'login';
+                    if (response.status == 401) {
+                      toaster.pop('error', $translate.instant('error'), response.data.error.message);
+                    };
+                    if (response.status == 422) {
+                      angular.forEach(response.data, function(messages, field) {
+                        toaster.pop('error', $translate.instant(field), messages.shift());
+                      });
+                    }
                 });
 
         };

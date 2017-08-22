@@ -5,7 +5,7 @@
 
 html,
 body {
-    background: url('./../images/background.png') no-repeat center center fixed;
+    background: #054e4a;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -565,6 +565,7 @@ h3.section-title {
 
 .bootstrap-switch {
     border-color: #00d2c5;
+    width: 70px !important;
 }
 
 .my-sweet-class {

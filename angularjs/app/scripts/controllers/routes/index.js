@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .controller('indexRoutesCtrl', function($scope, $rootScope, $location, $translate, routeService, $q, toaster, DTOptionsBuilder, DTColumnBuilder, $compile, sweetAlertService) {
 
         $scope.blockActions = false;
@@ -25,11 +25,11 @@ angular.module('comunidadDigitalApp')
                 var defer = $q.defer();
                 routeService.index().promise
                     .then(function(response) {
-                            $scope.roles = response.data.roles;
-                            for (var i = response.data.routes.length - 1; i >= 0; i--) {
-                                $scope.selected[response.data.routes[i].id] = response.data.routes[i].role_permissions;
+                            $scope.roles = response.data.meta.roles;
+                            for (var i = response.data.data.length - 1; i >= 0; i--) {
+                                $scope.selected[response.data.data[i].id] = response.data.data[i].permissions.data;
                             };
-                            defer.resolve(response.data.routes);
+                            defer.resolve(response.data.data);
                         },
                         function(error) {
                             toaster.pop('error', $translate.instant('error'));

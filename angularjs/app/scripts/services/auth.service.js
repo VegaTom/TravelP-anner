@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .factory('authService', ['$http', '$q', 'URL_CONST', function($http, $q, URL_CONST) {
 
         var URL = URL_CONST.AUTH;

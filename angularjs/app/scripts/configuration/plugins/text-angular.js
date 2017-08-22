@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .config(function($provide) {
 
         $provide.decorator('taOptions', ['taRegisterTool', 'taTranslations', '$delegate', '$uibModal', function(taRegisterTool, taTranslations, taOptions, $uibModal) {

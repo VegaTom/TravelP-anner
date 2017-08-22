@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .factory('sweetAlertService', ['SweetAlert', '$translate', function(SweetAlert, $translate) {
 
         function basic(message) {

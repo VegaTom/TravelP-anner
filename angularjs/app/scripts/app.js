@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name comunidadDigitalApp
+ * @name travelPlannerApp
  * @description
- * # comunidadDigitalApp
+ * # travelPlannerApp
  *
  * Main module of the application.
  */
 angular
-    .module('comunidadDigitalApp', [
+    .module('travelPlannerApp', [
         'ngAnimate',
         'ngCookies',
         'ngMessages',
@@ -36,19 +36,29 @@ angular
         'chart.js',
         'uiSwitch'
     ])
-    .controller('mainCtrl', function($scope, $rootScope, $localStorage, $location, $timeout, $uibModal, authService, userService, sweetAlertService, toaster) {
+    .controller('mainCtrl', function($scope, $rootScope, $localStorage, $location, $translate, $timeout, $uibModal, authService, sweetAlertService, languageService, toaster, amMoment) {
 
         $scope.logout = function() {
             authService.logout().promise
                 .then(function() {
                     $rootScope.isLogged = false;
-                    toaster.pop('success', 'OK');
+                    toaster.pop('success', $translate.instant('done'));
                     $localStorage.$reset();
                     $timeout(function() { $location.path('/login'); }, 200);
                 }, function(error) {
-                    toaster.pop('error', error.status, error.statusText);
+                    toaster.pop('error', $translate.instant('error'));
+                    $localStorage.$reset();
+                    $timeout(function() { $location.path('/login'); }, 200);
                     console.log(error);
                 });
+        };
+
+        $rootScope.$userInfo.language = $localStorage.language || 'es';
+
+        $scope.changeLanguage = function() {
+            amMoment.changeLocale($rootScope.$userInfo.language);
+            $translate.use($rootScope.$userInfo.language);
+            // languageService.changeLanguage($rootScope.$userInfo.language);
         };
 
         $scope.changePassword = function() {
@@ -71,7 +81,7 @@ angular
         };
 
     })
-    .run(function($rootScope, $location, authService, toaster, amMoment, $localStorage, $sessionStorage) {
+    .run(function($rootScope, $location, authService, ROLES, toaster, amMoment, $localStorage, $sessionStorage) {
 
         if (!$sessionStorage.running) {
             $sessionStorage.running = true;
@@ -80,8 +90,6 @@ angular
                 $localStorage.$reset();
             }
         }
-
-        amMoment.changeLocale('es');
 
         $rootScope.dateOptions = {
             formatYear: 'yy',
@@ -92,12 +100,12 @@ angular
 
         $rootScope.$userInfo = $localStorage || {
             isLogged: false,
-            full_name: null,
-            location: null,
-            id_token: null,
-            role: null,
             id: null,
-            remember: false
+            name: null,
+            id_token: null,
+            roles: [],
+            remember: false,
+            language: 'es'
         };
 
         if (!$rootScope.$userInfo.isLogged) {
@@ -106,23 +114,25 @@ angular
 
         $rootScope.$on('$routeChangeStart', function(event, next) {
 
-            $rootScope.superAccess = $rootScope.$userInfo.role === 0;
-            $rootScope.adminAccess = $rootScope.$userInfo.role === 1;
+            $rootScope.adminAccess = $rootScope.$userInfo.roles ? $rootScope.$userInfo.roles.indexOf(ROLES.ADMIN) > -1 : false;
 
             if (next.data && !next.data.authenticated && $rootScope.$userInfo.isLogged) {
                 $location.path('/');
             }
 
-            if (next.data.allowed && next.data.allowed.indexOf($rootScope.$userInfo.role) === -1) {
+            if (next.data.allowed && !next.data.allowed.filter(function (allowed) {
+                  $rootScope.$userInfo.roles.indexOf(allowed) > -1;
+                }).length === 0) {
                 $location.path('/');
             }
 
         });
 
     })
-    .config(function($translateProvider) {
+    .config(function($translateProvider, $localStorageProvider) {
         $translateProvider
             .translations('es', translation_es)
+            .translations('en', translation_en)
             .preferredLanguage('es');
     })
     .config(function($httpProvider, jwtOptionsProvider, $localStorageProvider) {
@@ -130,7 +140,7 @@ angular
             tokenGetter: [function() {
                 return $localStorageProvider.get('id_token');
             }],
-            whiteListedDomains: ['127.0.0.1', 'localhost', 'comunidaddigital.softdevmanager.com']
+            whiteListedDomains: ['127.0.0.1', 'localhost']
         });
 
         $httpProvider.interceptors.push('jwtInterceptor');
@@ -144,6 +154,7 @@ angular
             request: function(config) {
                 pleaseWaitService.wait();
                 config.url = config.url.replace(/\/$/, '');
+                config.headers['language'] = $rootScope.$userInfo.language;
                 return config;
             },
             response: function(response) {
@@ -157,6 +168,7 @@ angular
                     $location.path('/login');
                 }
                 if (response.status === 403) {}
+                if (response.status === 422) {}
                 if (response.status === 419 || response.status === 440) {}
 
                 pleaseWaitService.finish();

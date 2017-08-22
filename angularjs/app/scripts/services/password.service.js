@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('travelPlannerApp')
-    .factory('apiService', ['$http', '$q', 'URL_CONST', function($http, $q, URL_CONST) {
+    .factory('passwordService', ['$http', '$q', 'URL_CONST', function($http, $q, URL_CONST) {
 
-        var API = URL_CONST.API;
-        //create cancellable requests
+        var URL = URL_CONST.PASSWORD;
+
         function createRequest(method, info) {
             var defer = $q.defer();
             return {
                 promise: $http({
                     method: method,
-                    url: API + info.url,
+                    url: info.url,
                     data: info.data,
                     timeout: defer.promise
                 }),
@@ -20,10 +20,17 @@ angular.module('travelPlannerApp')
             };
         }
 
+        function change(method, data) {
+            return apiService.createRequest(method, {
+                url: URL,
+                data: data
+            });
+        }
+
         return {
-            createRequest: function(method, info) {
-                return createRequest(method, info);
-            }
+            change: function(data) {
+                return change('PUT', data);
+            },
         };
 
     }]);

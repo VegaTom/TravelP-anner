@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             # \TravelPlanner\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \TravelPlanner\Http\Middleware\AjaxLanguageSelector::class,
         ],
 
         'api' => [
@@ -64,5 +65,6 @@ class Kernel extends HttpKernel
         'TokenRefresh' => \TravelPlanner\Http\Middleware\TokenRefresh::class,
 
         'InjectAdminToken' => \TravelPlanner\Http\Middleware\InjectAdminToken::class,
+        'AjaxLang' => \TravelPlanner\Http\Middleware\AjaxLanguageSelector::class,
     ];
 }

@@ -1,16 +1,17 @@
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <h3 class="bottom-white-line">{{ header | translate }}</h3>
-        <a ng-href="{{ '#!/users' }}" uib-tooltip="{{ 'back' | translate }}" class="btn btn-sm btn-primary pull-right custom-button-3" style="margin-right: 2em !important; position: absolute; top: 0; right: 0px;">&lt;</a>
+    <div class="col-md-9 col-md-offset-1">
+        <h3>{{ header | translate }}</h3>
+    </div>
+    <div class="col-md-1">
     </div>
 </div>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1 small-form">
-        <form accept-charset="utf-8" class="form-horizontal" role="form" name="userForm">
+    <div class="col-md-10 col-md-offset-1">
+        <form accept-charset="utf-8" class="form-horizontal" role="form" name="profileForm">
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">{{ 'name' | translate }}</label>
                 <div class="col-sm-10">
-                    <input ng-disabled="!edit" type="text" class="form-control" id="name" placeholder="{{ 'name' | translate }}" ng-model="formData.name" required>
+                    <input type="text" class="form-control" id="name" placeholder="{{ 'name' | translate }}" ng-model="formData.name" required>
                     <ul ng-show="errors.name" class="text-red">
                         <li ng-repeat="error in errors.name">{{ error }}</li>
                     </ul>
@@ -19,7 +20,7 @@
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">{{ 'email' | translate }}</label>
                 <div class="col-sm-10">
-                    <input ng-disabled="!edit" type="text" class="form-control" id="email" placeholder="{{ 'email' | translate }}" ng-model="formData.email" required>
+                    <input type="text" class="form-control" id="email" placeholder="{{ 'email' | translate }}" ng-model="formData.email" required>
                     <ul ng-show="errors.email" class="text-red">
                         <li ng-repeat="error in errors.email">{{ error }}</li>
                     </ul>
@@ -27,8 +28,8 @@
             </div>
             <div class="form-group m-t-4">
                 <div class="col-sm-offset-2 col-sm-4">
-                    <button ng-disabled="!userForm.$valid || blockButtons" ng-click="userForm.$valid && !blockButtons && save()" class="btn btn-lg btn-primary btn-block custom-button-2" type="submit">
-                        {{ message | translate }}
+                    <button ng-disabled="!profileForm.$valid || blockButtons" ng-click="profileForm.$valid && !blockButtons && save()" class="btn btn-lg btn-primary btn-block custom-button-2" type="submit">
+                        {{ 'save' | translate }}
                     </button>
                 </div>
                 <div class="col-sm-offset-2 col-sm-4">
@@ -37,6 +38,7 @@
                     </span>
                 </div>
             </div>
+
         </form>
     </div>
 </div>

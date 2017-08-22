@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('comunidadDigitalApp')
+angular.module('travelPlannerApp')
     .filter('filterOptions', function() {
         return function(items, props) {
             var out = [];

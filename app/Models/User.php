@@ -4,6 +4,7 @@ namespace TravelPlanner\Models;
 use Hash;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use TravelPlanner\Events\PasswordRecoveryEvent;
 use TravelPlanner\Events\PasswordRecoveryRequestEvent;
@@ -105,6 +106,13 @@ class User extends Authenticatable
     {
         event(new PasswordRecoveryEvent($this));
         return true;
+    }
+
+    public function changePassword(Request $request)
+    {
+        $this->password = $request->new_password;
+        $this->save();
+        return $this;
     }
 
     public function removePasswordRecoveryToken()
