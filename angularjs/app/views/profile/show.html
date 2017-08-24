@@ -1,12 +1,11 @@
 <div class="row">
-    <div class="col-md-9 col-md-offset-1">
-        <h3>{{ header | translate }}</h3>
-    </div>
-    <div class="col-md-1">
+    <div class="col-md-10 col-md-offset-1">
+        <h3 class="bottom-white-line">{{ header | translate }}</h3>
+        <a ng-click="back()" uib-tooltip="{{ 'back' | translate }}" class="btn btn-sm btn-primary pull-right custom-button-3" style="margin-right: 2em !important; position: absolute; top: 0; right: 0px;">&lt;</a>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1 small-form">
         <form accept-charset="utf-8" class="form-horizontal" role="form" name="profileForm">
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">{{ 'name' | translate }}</label>

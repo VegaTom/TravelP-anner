@@ -1,7 +1,7 @@
 @component('mail::message')
 {{ __('Hello :name.', ['name' => $user->name ?? $user->email]) }}
 
-{{ __('We have received a request of password recovery.') }}
+{{ __('We have received a request to recover your password.') }}
 
 {{ __('At next we left your new password&#58;') }}
 

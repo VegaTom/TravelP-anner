@@ -3,15 +3,13 @@
 angular.module('travelPlannerApp')
     .factory('authService', ['$http', '$q', 'URL_CONST', function($http, $q, URL_CONST) {
 
-        var URL = URL_CONST.AUTH;
-
-        function login(data) {
-            var defer = $q.defer();
+        function createRequest(info){
+          var defer = $q.defer();
             return {
                 promise: $http({
-                    method: 'POST',
-                    url: URL,
-                    data: data,
+                    method: info.method,
+                    url: info.url,
+                    data: info.data,
                     skipAuthorization: true,
                     timeout: defer.promise
                 }),
@@ -21,23 +19,46 @@ angular.module('travelPlannerApp')
             };
         }
 
+        function login(data) {
+            return createRequest({
+              url: URL_CONST.AUTH,
+              method: 'POST',
+              data: data
+            });
+        }
+
         function logout() {
-            var defer = $q.defer();
-            return {
-                promise: $http({
-                    method: 'DELETE',
-                    url: URL,
-                    timeout: defer.promise
-                }),
-                cancel: function(reason) {
-                    defer.resolve(reason);
-                }
-            };
+            return createRequest({
+              url: URL_CONST.AUTH,
+              method: 'DELETE',
+            });
+        }
+
+        function register(data) {
+            return createRequest({
+              url: URL_CONST.REGISTER,
+              method: 'POST',
+              data: data
+            });
+        }
+
+        function forgot(data) {
+            return createRequest({
+              url: URL_CONST.PASSWORD,
+              method: 'POST',
+              data: data
+            });
         }
 
         return {
             login: function(data) {
                 return login(data);
+            },
+            register: function(data) {
+                return register(data);
+            },
+            forgot: function(data) {
+                return forgot(data);
             },
             logout: function() {
                 return logout('GET');

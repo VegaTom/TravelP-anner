@@ -2,13 +2,12 @@
 
 namespace TravelPlanner\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class ExceptionOccured extends Mailable
 {
-    use Queueable, SerializesModels;
+    use SerializesModels;
 
     /**
      * The body of the message.

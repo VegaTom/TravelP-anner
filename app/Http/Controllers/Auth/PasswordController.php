@@ -2,6 +2,7 @@
 
 namespace TravelPlanner\Http\Controllers\Auth;
 
+use JWTAuth;
 use TravelPlanner\Http\Controllers\Controller;
 use TravelPlanner\Http\Requests\Password\ChangeRequest;
 use TravelPlanner\Http\Requests\Password\RecoveryRequest;
@@ -58,7 +59,7 @@ class PasswordController extends Controller
      */
     public function change(ChangeRequest $request)
     {
-        $reuqest->user()->changePassword($request);
+        JWTAuth::parseToken()->toUser()->changePassword($request);
         return $this->response->withArray([])->setStatusCode(204);
     }
 }

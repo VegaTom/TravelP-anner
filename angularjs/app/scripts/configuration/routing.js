@@ -17,6 +17,20 @@ angular.module('travelPlannerApp')
                     authenticated: false,
                 }
             })
+            .when('/register', {
+                templateUrl: 'views/auth/register.html',
+                controller: 'registerCtrl',
+                data: {
+                    authenticated: false,
+                }
+            })
+            .when('/forgot', {
+                templateUrl: 'views/auth/forgot.html',
+                controller: 'forgotCtrl',
+                data: {
+                    authenticated: false,
+                }
+            })
             .when('/profile', {
                 templateUrl: 'views/profile/show.html',
                 controller: 'profileCtrl',

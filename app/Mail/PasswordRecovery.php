@@ -2,14 +2,11 @@
 
 namespace TravelPlanner\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use TravelPlanner\Models\User;
 
-class PasswordRecovery extends Mailable implements ShouldQueue
+class PasswordRecovery extends Mailable
 {
-    use Queueable;
 
     public $user;
     public $password;

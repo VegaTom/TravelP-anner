@@ -1,3 +1,23 @@
 {
-    "website": "Sitio Web"
+    "website": "Sitio Web",
+    "Success": "Hecho",
+    "We have processed your request": "Hemos procesado tu solicitud",
+    "We have sent you a new email with further instructions": "Te hemos enviado un correo con nuevas instrucciones",
+
+    "Request for Password Recovery": "Solicitud para recuperación de contraseña",
+    "Hello :name.": "Hola :name.",
+    "We have received a request to recover your password.": "Hemos recibido una petición para recuperar tu contraseña.",
+    "If you made this request, click the next button": "Si has hecho esta solicitud, haz clic en el siguiente botón",
+    "Proceed": "Proceder",
+    "You will receive a new email with a new temporal password. Your old password will be removed.": "Recibirás un nuevo correo con una contraseña temporal. Tu antigua contraseña será deshabilitada.",
+    "If you didn't make this request or you don't want to further proceed then don't be afraid, your account is still secure.": "Si no has hecho esta solicitud o no quieres continuar con el proceso, no te preocupes, tu cuenta aún es segura.",
+    "Just delete this mail and Log in as always.": "Elimina este correo e inicia sesión como de costumbre",
+    "Thanks,": "Gracias,",
+
+    "New Password": "Nueva contraseña",
+    "New Password": "Nueva contraseña",
+    "At next we left your new password&#58;": "A continuación te dejamos tu nueva contraseña&#58;",
+    "We recomend you to change this password as soon as you log in again.": "Te recomendamos cambiar esta contraseña tan pronto inicies sesión.",
+    "If you didn't make this request your email account may be compromised.": "Si tu no has hecho esta solicitud entonces tu cuenta de correo puede estar comprometida.",
+    "Please take the respective actions to secure your email account.": "Por favor toma las acciones respectivas para asegurar tu cuenta de correo."
 }

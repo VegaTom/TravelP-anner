@@ -149,7 +149,7 @@ angular
             return $injector.get('AuthInterceptor');
         }]);
     })
-    .factory('AuthInterceptor', function($rootScope, $q, $location, $localStorage, pleaseWaitService) {
+    .factory('AuthInterceptor', function($rootScope, $q, $location, $localStorage, pleaseWaitService, toaster, $translate) {
         return {
             request: function(config) {
                 pleaseWaitService.wait();
@@ -170,6 +170,9 @@ angular
                 if (response.status === 403) {}
                 if (response.status === 422) {}
                 if (response.status === 419 || response.status === 440) {}
+                if (response.status === 500){
+                  toaster.pop('error', $translate.instant('server_error'));
+                }
 
                 pleaseWaitService.finish();
                 return $q.reject(response);

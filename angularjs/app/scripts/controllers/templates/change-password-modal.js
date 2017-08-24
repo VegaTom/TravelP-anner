@@ -16,18 +16,12 @@ angular.module('travelPlannerApp')
             $scope.blockButtons = true;
             passwordService.change($scope.formData).promise
                 .then(function(response) {
-                        console.log(response);
                         toaster.pop('success', $translate.instant('done'));
                         $uibModalInstance.close(true);
                     },
                     function(error) {
                         $scope.errors = error.data;
                         $scope.blockButtons = false;
-                        if (response.status == 422) {
-                          angular.forEach(error.data, function(messages, field) {
-                            toaster.pop('error', $translate.instant(field), messages.shift());
-                          });
-                        }
                     });
         };
 

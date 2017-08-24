@@ -271,12 +271,22 @@ tbody {
 
 .login-form {
     width: 30em;
-    height: 25em;
+    height: 28em;
     border-radius: 50px;
     color: white;
     background-color: #00b8ad;
     padding-top: 2em;
     margin-top: 2em;
+}
+
+.login-form .extra-buttons {
+    bottom: -20px;
+    position: fixed;
+    text-align: right;
+    width: 100%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding-right: 50px;
 }
 
 label,
@@ -608,6 +618,7 @@ h3.section-title {
     width: 50em;
     margin-left: 50%;
     transform: translateX(-50%);
+    border-radius: 20px;
 }
 
 .small-form label {
@@ -723,6 +734,7 @@ a.paginate_button {
     margin-bottom: 150px;
     background: white;
     padding: 30px 20px;
+    border-radius: 20px;
 }
 
 .long-form label {

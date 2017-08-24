@@ -9,9 +9,9 @@ angular.module('travelPlannerApp')
         WEBSERVICE_DIR: WEBSERVICE_DIR,
         API: WEBSERVICE_DIR + 'api/v1/',
         AUTH: WEBSERVICE_DIR + 'authenticate/',
-        LANGUAGE: WEBSERVICE_DIR + 'lang/',
-        PASSWORD: WEBSERVICE_DIR + 'password/',
         REGISTER: WEBSERVICE_DIR + 'register/',
+        PASSWORD: WEBSERVICE_DIR + 'password/',
+        LANGUAGE: WEBSERVICE_DIR + 'lang/',
         ROUTE: 'routes/',
         TRIP: 'trips/',
         USER: 'users/'

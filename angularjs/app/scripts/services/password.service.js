@@ -21,7 +21,7 @@ angular.module('travelPlannerApp')
         }
 
         function change(method, data) {
-            return apiService.createRequest(method, {
+            return createRequest(method, {
                 url: URL,
                 data: data
             });

@@ -45,8 +45,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="logo">
-                    <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+                <div class="title m-b-md">
+                    {{ config('app.name') }}
                 </div>
                 <div class="title">{{ __('Success') }}</div>
                 <div class="title">{{ __($message ?? 'We have processed your request') }}</div>

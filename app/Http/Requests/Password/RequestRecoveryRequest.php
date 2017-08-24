@@ -25,7 +25,7 @@ class RequestRecoveryRequest extends BaseRequest
     public function rules()
     {
         return [
-            'email' => 'bail|required|email|exists:users,email|has_no_recovery_request',
+            'email' => 'bail|required|email|exists:users,email',
         ];
     }
 }

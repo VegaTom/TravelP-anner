@@ -2,8 +2,8 @@
 
 namespace TravelPlanner\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,8 +13,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'TravelPlanner\Events\Event' => [
-            'TravelPlanner\Listeners\EventListener',
+        \TravelPlanner\Events\PasswordRecoveryEvent::class => [
+            \TravelPlanner\Listeners\PasswordRecoveryListener::class,
+        ],
+        \TravelPlanner\Events\PasswordRecoveryRequestEvent::class => [
+            \TravelPlanner\Listeners\PasswordRecoveryRequestListener::class,
         ],
     ];
 
