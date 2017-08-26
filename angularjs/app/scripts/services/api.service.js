@@ -12,6 +12,7 @@ angular.module('travelPlannerApp')
                     method: method,
                     url: API + info.url,
                     data: info.data,
+                    params: method == 'GET' ? info.data : {},
                     timeout: defer.promise
                 }),
                 cancel: function(reason) {

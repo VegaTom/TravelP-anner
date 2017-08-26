@@ -5,11 +5,11 @@ angular.module('travelPlannerApp')
 
         var URL = URL_CONST.LANGUAGE;
 
-        function changeLanguage(lang) {
+        function changeLanguage(method, lang) {
             var defer = $q.defer();
             return {
                 promise: $http({
-                    method: 'GET',
+                    method: method,
                     url: URL + lang,
                     skipAuthorization: true,
                     timeout: defer.promise
@@ -22,7 +22,7 @@ angular.module('travelPlannerApp')
 
         return {
             changeLanguage: function(lang) {
-                return changeLanguage(lang);
+                return changeLanguage('GET', lang);
             },
         };
 

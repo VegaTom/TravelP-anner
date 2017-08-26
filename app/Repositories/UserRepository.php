@@ -2,6 +2,7 @@
 
 namespace TravelPlanner\Repositories;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use TravelPlanner\Extensions\Interfaces\Repositories\UserRepositoryInterface;
 use TravelPlanner\Models\User;

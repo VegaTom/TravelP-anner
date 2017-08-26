@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="bower_components/ui-cropper/compile/minified/ui-cropper.css" />
     <link rel="stylesheet" href="bower_components/SpinKit/css/spinkit.css" />
     <link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.css" />
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -117,6 +118,7 @@
     <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
     <script src="bower_components/jszip/dist/jszip.js"></script>
     <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment/locale/es.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
     <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
@@ -163,6 +165,7 @@
     <script src="bower_components/chart.js/dist/Chart.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -186,16 +189,22 @@
     <script src="scripts/services/language.service.js"></script>
     <script src="scripts/services/password.service.js"></script>
     <script src="scripts/services/route.service.js"></script>
+    <script src="scripts/services/trip.service.js"></script>
     <script src="scripts/services/user.service.js"></script>
+    <!-- directives -->
+    <script src="scripts/directives/trips-next-month/trips-next-month.directive.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers/auth/login.js"></script>
     <script src="scripts/controllers/auth/register.js"></script>
     <script src="scripts/controllers/auth/forgot.js"></script>
     <script src="scripts/controllers/routes/index.js"></script>
+    <script src="scripts/controllers/trips/index.js"></script>
+    <script src="scripts/controllers/trips/edit.js"></script>
     <script src="scripts/controllers/users/index.js"></script>
     <script src="scripts/controllers/users/edit.js"></script>
     <script src="scripts/controllers/profile/profile.js"></script>
     <script src="scripts/controllers/templates/change-password-modal.js"></script>
+    <script src="scripts/controllers/templates/trip-preview-modal.js"></script>
     <!-- endbuild -->
 </body>
 

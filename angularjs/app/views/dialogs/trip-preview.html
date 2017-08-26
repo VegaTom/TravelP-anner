@@ -1,0 +1,20 @@
+<div class="modal-header black text-white">
+</div>
+<div class="modal-body green text-white text-center" id="modal-body">
+  <div class="container bootstrap snippet">
+    <div class="row">
+      <ul class="notes">
+        <li>
+          <div ng-class="randomClass">
+            <small>{{ trip.start_date }} - {{ trip.end_date }}</small>
+            <h4>{{ trip.destination }}</h4>
+            <p>{{ 'days_from_now' | | translate:daysFromNow }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal-footer black" style="text-align: center !important;">
+  <button class="btn btn-warning custom-button-2" type="button" ng-click="close()">{{ 'close' | translate }}</button>
+</div>

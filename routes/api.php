@@ -23,6 +23,7 @@ Route::group(['prefix' => 'v1', 'as' => '.v1', 'middleware' => ['InjectAdminToke
     Route::group(['prefix' => 'trips', 'as' => '.trips'], function () {
         Route::get('/', ['as' => '.index', 'uses' => 'TripController@index']);
         Route::post('/', ['as' => '.store', 'uses' => 'TripController@store']);
+        Route::get('/next-month', ['as' => '.nextMonth', 'uses' => 'TripController@nextMonth']);
         Route::get('/{id}', ['as' => '.show', 'uses' => 'TripController@show']);
         Route::put('/{id}', ['as' => '.update', 'uses' => 'TripController@update']);
         Route::delete('/{id}', ['as' => '.delete', 'uses' => 'TripController@destroy']);

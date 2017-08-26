@@ -44,6 +44,18 @@ class TripController extends Controller
     }
 
     /**
+     * Get Trip plan for next month
+     *
+     * Gets all the trips for the next month.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function nextMonth()
+    {
+        return $this->response->withCollection($this->trips->nextMonth(), new TripTransformer);
+    }
+
+    /**
      * Creates a new Trip
      *
      * If there is no given user_id then the trip will be

@@ -19,49 +19,50 @@ angular.module('travelPlannerApp')
             };
         }
 
-        function login(data) {
+        function login(method, data) {
             return createRequest({
               url: URL_CONST.AUTH,
-              method: 'POST',
+              method: method,
               data: data
             });
         }
 
-        function logout() {
+        function logout(method, data) {
             return createRequest({
               url: URL_CONST.AUTH,
-              method: 'DELETE',
+              method: method,
+              data: data,
             });
         }
 
-        function register(data) {
+        function register(method, data) {
             return createRequest({
               url: URL_CONST.REGISTER,
-              method: 'POST',
+              method: method,
               data: data
             });
         }
 
-        function forgot(data) {
+        function forgot(method, data) {
             return createRequest({
               url: URL_CONST.PASSWORD,
-              method: 'POST',
+              method: method,
               data: data
             });
         }
 
         return {
             login: function(data) {
-                return login(data);
+                return login('POST', data);
             },
             register: function(data) {
-                return register(data);
+                return register('POST', data);
             },
             forgot: function(data) {
-                return forgot(data);
+                return forgot('POST', data);
             },
             logout: function() {
-                return logout('GET');
+                return logout('DELETE');
             }
         };
 
