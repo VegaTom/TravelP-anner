@@ -1,0 +1,68 @@
+{
+    "name": "VegaTom/TravelPlanner",
+    "description": "Travel planner example for 4Geeks test",
+    "keywords": ["travel-planner", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "authors": [{
+        "name": "Tomgeorg Vega",
+        "email": "tomvega8@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": ">=5.6.4",
+        "darkaonline/l5-swagger": "~5.0",
+        "doctrine/dbal": "^2.5",
+        "ellipsesynergie/api-response": "^0.13.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "ied3vil/language-switcher": "^1.1",
+        "jenssegers/model": "^1.1",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
+        "mopo922/laravel-treats": "^1.0",
+        "mpociot/laravel-apidoc-generator": "^2.0",
+        "paragonie/constant_time_encoding": "^2.0",
+        "tymon/jwt-auth": "^0.5.9",
+        "webpatser/laravel-uuid": "^2.0"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "TravelPlanner\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ],
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

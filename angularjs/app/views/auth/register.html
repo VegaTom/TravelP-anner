@@ -1,0 +1,39 @@
+<div class="to-center" style="top: 50%; position: absolute; left: 50%; transform: translate(-50%,-50%);">
+    <div class="">
+        <!-- img src="images/logo.png" style="width: 12em; margin-left: 50%; transform: translateX(-50%);" -->
+    </div>
+    <div class="login-form" style="height: 33em">
+        <form class="form-horizontal" name="loginForm" role="form" autocomplete="off" style="padding-top: 1em;">
+            <div class="col-md-10 col-md-offset-1 m-t-2">
+                <div class="input-group" style="border-bottom: 1px solid white;">
+                    <span class="input-group-addon no-border"><img src="images/svg/user.svg"></span>
+                    <input ng-model="loginData.email" style="padding-left: 0px;" class="form-control no-border" placeholder="{{ 'email' | translate }}" name="email" type="email" required pattern="^([\w\d\-\.]+)@{1}(([\w\d\-]{1,67})|([\w\d\-]+\.[\w\d\-]{1,67}))\.(([a-zA-Z\d]{2,4})(\.[a-zA-Z\d]{2})?)$">
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 m-t-2">
+                <div class="input-group" style="border-bottom: 1px solid white;">
+                    <span class="input-group-addon no-border"><img src="images/svg/user.svg"></span>
+                    <input ng-model="loginData.name" style="padding-left: 0px;" class="form-control no-border" placeholder="{{ 'name' | translate }}" name="email" type="text" required>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 m-t-2">
+                <div class="input-group" style="border-bottom: 1px solid white;">
+                    <span class="input-group-addon no-border"><img src="images/svg/lock.svg"></span>
+                    <input ng-model="loginData.password" style="padding-left: 0px;" class="form-control no-border" placeholder="{{ 'password' | translate }}" name="password" type="password" value="" required>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-1 m-t-2">
+                <div class="input-group" style="border-bottom: 1px solid white;">
+                    <span class="input-group-addon no-border"><img src="images/svg/lock.svg"></span>
+                    <input ng-model="loginData.password_confirmation" style="padding-left: 0px;" class="form-control no-border" placeholder="{{ 'password_confirmation' | translate }}" name="password" type="password" value="" required>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3 m-t-4">
+                <button type="submit" class="btn btn-block custom-button" ng-disabled="!loginForm.$valid || blockButton" ng-click="loginForm.$valid && !blockButton && login()">{{ message | translate }}</button>
+            </div>
+        </form>
+        <div class="alert alert-success extra-buttons">
+          <a ng-href="{{'#!/login'}}">{{ 'already_a_member_login' | translate }}</a>
+        </div>
+    </div>
+</div>

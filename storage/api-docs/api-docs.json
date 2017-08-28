@@ -1,0 +1,55 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Web routes API",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v1/routes",
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "Gets all the routes",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            }
+        },
+        "/{routeId}/": {
+            "put": {
+                "summary": "Toggles the permission over the given role_id",
+                "operationId": "getCustomerRates",
+                "parameters": [
+                    {
+                        "name": "routeId",
+                        "in": "path",
+                        "description": "Target route.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "role_id",
+                        "in": "formData",
+                        "description": "The role id to toggle permission on route.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}

@@ -1,0 +1,213 @@
+ <!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>Travel Planner</title>
+    <base href="/web/">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css" />
+    <link rel="stylesheet" href="bower_components/please-wait/build/please-wait.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/css/angular-datatables.css" />
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/datatables.net-buttons-dt/css/buttons.dataTables.css" />
+    <link rel="stylesheet" href="bower_components/spectrum/spectrum.css" />
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+    <link rel="stylesheet" href="bower_components/ui-cropper/compile/minified/ui-cropper.css" />
+    <link rel="stylesheet" href="bower_components/SpinKit/css/spinkit.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-switch/angular-ui-switch.css" />
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/select2.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/notes.css">
+    <link rel="stylesheet" href="styles/spinner.css">
+    <link rel="stylesheet" href="styles/sk-circle.css">
+    <!-- endbuild -->
+</head>
+
+<body ng-app="travelPlannerApp" ng-controller="mainCtrl">
+    <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+    <!-- Inicio menú -->
+    <nav class="navbar navbar-default" ng-cloak ng-if="$userInfo.isLogged">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand nav-logo" ng-href="{{'#!/'}}" style="font-family: comfortaa; letter-spacing: 0.5px; padding-top: 16.4px; font-size: 15px;">Travel <span>Planner</span></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a ng-href="{{'#!/trips'}}">{{ 'trips.section_name' | translate }}</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" ng-if="adminAccess">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'administration.section_name' | translate }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-href="{{'#!/routes'}}">{{ 'administration.routes' | translate }}</a></li>
+                            <li><a ng-href="{{'#!/users'}}">{{ 'administration.users' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: gray !important;">{{ 'welcome' | translate }}, {{ $userInfo.name | titlecase }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-href="{{'#!/profile'}}">{{ 'profile' | translate }}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="pointer" ng-click="changePassword()">{{ 'change_password' | translate }}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a class="pointer" ng-click="logout()">{{ 'logout' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-cogs"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a>{{ 'language' | translate }}</a></li>
+                            <li style="padding-left: 1.5em;">
+                                <input bs-switch ng-model="$userInfo.language" type="checkbox" switch-on-text="{{ 'english' | translate }}" switch-off-text="{{ 'spanish' | translate }}" ng-true-value="'en'" ng-false-value="'es'" switch-size="mini" switch-change="changeLanguage()">
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <ng-view></ng-view>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        ! function(A, n, g, u, l, a, r) {
+            A.GoogleAnalyticsObject = l, A[l] = A[l] || function() {
+                    (A[l].q = A[l].q || []).push(arguments)
+                }, A[l].l = +new Date, a = n.createElement(g),
+                r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+        }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+    </script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/please-wait/build/please-wait.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/jszip/dist/jszip.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/dataTables.buttons.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.colVis.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.flash.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.html5.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.print.js"></script>
+    <script src="bower_components/spectrum/spectrum.js"></script>
+    <script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.min.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ngSweetAlert/SweetAlert.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+    <script src="bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ui-cropper/compile/minified/ui-cropper.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- lang -->
+    <script src="scripts/configuration/lang/en.js"></script>
+    <script src="scripts/configuration/lang/es.js"></script>
+    <!-- app -->
+    <script src="scripts/app.js"></script>
+    <!-- config -->
+    <script src="scripts/configuration/constants.js"></script>
+    <script src="scripts/configuration/routing.js"></script>
+    <script src="scripts/configuration/plugins/text-angular.js"></script>
+    <!-- filters -->
+    <script src="scripts/filters/title-case.js"></script>
+    <script src="scripts/filters/select-options.js"></script>
+    <!-- services -->
+    <script src="scripts/services/sweet-alert.service.js"></script>
+    <script src="scripts/services/please-wait.service.js"></script>
+    <script src="scripts/services/api.service.js"></script>
+    <script src="scripts/services/auth.service.js"></script>
+    <script src="scripts/services/language.service.js"></script>
+    <script src="scripts/services/password.service.js"></script>
+    <script src="scripts/services/route.service.js"></script>
+    <script src="scripts/services/trip.service.js"></script>
+    <script src="scripts/services/user.service.js"></script>
+    <!-- directives -->
+    <!-- controllers -->
+    <script src="scripts/controllers/auth/login.js"></script>
+    <script src="scripts/controllers/auth/register.js"></script>
+    <script src="scripts/controllers/auth/forgot.js"></script>
+    <script src="scripts/controllers/routes/index.js"></script>
+    <script src="scripts/controllers/trips/index.js"></script>
+    <script src="scripts/controllers/trips/create.js"></script>
+    <script src="scripts/controllers/trips/edit.js"></script>
+    <script src="scripts/controllers/users/index.js"></script>
+    <script src="scripts/controllers/users/edit.js"></script>
+    <script src="scripts/controllers/profile/profile.js"></script>
+    <script src="scripts/controllers/templates/change-password-modal.js"></script>
+    <script src="scripts/controllers/templates/trip-preview-modal.js"></script>
+    <script src="scripts/controllers/welcome/welcome.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
