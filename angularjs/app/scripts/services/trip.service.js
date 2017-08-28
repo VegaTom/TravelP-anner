@@ -3,7 +3,7 @@
 angular.module('travelPlannerApp')
     .factory('tripService', ['apiService', 'URL_CONST', function(apiService, URL_CONST) {
 
-        var URL = URL_CONST.USER;
+        var URL = URL_CONST.TRIP;
 
         function index(method, data) {
             return apiService.createRequest(method, {
@@ -14,7 +14,14 @@ angular.module('travelPlannerApp')
 
         function nextMonth(method) {
             return apiService.createRequest(method, {
-                url: URL
+                url: URL + 'next-month'
+            });
+        }
+
+        function store(method, data) {
+            return apiService.createRequest(method, {
+                url: URL,
+                data: data
             });
         }
 
@@ -43,6 +50,9 @@ angular.module('travelPlannerApp')
             },
             nextMonth: function() {
                 return nextMonth('GET');
+            },
+            store: function(data) {
+                return store('POST', data);
             },
             show: function(data) {
                 return show('GET', data);

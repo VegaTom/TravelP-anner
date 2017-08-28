@@ -1,26 +1,26 @@
 'use strict';
 
 angular.module('travelPlannerApp')
-    .controller('editTripCtrl', function($scope, $rootScope, $routeParams, $location, $translate, userService, toaster) {
+    .controller('editTripCtrl', function($scope, $rootScope, $routeParams, $location, $translate, tripService, toaster) {
 
         $scope.blockButtons = false;
-        $scope.header = 'users.info';
-        $scope.message = 'edit';
-        $scope.edit = false;
+        $scope.header = 'trips.info';
 
         $scope.formData = {};
 
         load();
 
         function load() {
-            userService.show({ id: $routeParams.id }).promise
+            tripService.show({ id: $routeParams.id }).promise
                 .then(function(response) {
-                        console.log(response);
                         $scope.formData = {
-                            email: response.data.data.email,
-                            name: response.data.data.name,
-                            id: response.data.data.id
+                            id: response.data.data.id,
+                            destination: response.data.data.destination,
+                            start_date: moment(response.data.data.start_date).parseZone().local().toDate(),
+                            end_date: moment(response.data.data.end_date).parseZone().local().toDate(),
+                            comment: response.data.data.comment
                         };
+
                     },
                     function(error) {
                         toaster.pop('error', $translate.instant('error'));
@@ -29,18 +29,19 @@ angular.module('travelPlannerApp')
         }
 
         $scope.save = function(){
-          if (!$scope.edit) {
-            $scope.edit = true;
-            $scope.message = 'save';
-            $scope.header = 'users.edit';
-            return;
+          var data = {
+            id: $scope.formData.id,
+            destination: $scope.formData.destination,
+            start_date: moment($scope.formData.start_date).format('YYYY-MM-DDTHH:mm:ssZ'),
+            end_date: moment($scope.formData.end_date).format('YYYY-MM-DDTHH:mm:ssZ'),
+            comment: $scope.formData.comment
           };
 
           $scope.blockButtons = true;
-          userService.update($scope.formData).promise
+          tripService.update(data).promise
             .then(function(response) {
                     toaster.pop('success', $translate.instant('done'));
-                    $location.path('/users');
+                    $location.path('/trips');
                 },
                 function(error) {
                     $scope.blockButtons = false;
@@ -50,7 +51,7 @@ angular.module('travelPlannerApp')
         };
 
         $scope.cancel = function() {
-            $location.path('/users');
+            $location.path('/trips');
         };
 
     });

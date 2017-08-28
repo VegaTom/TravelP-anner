@@ -28,6 +28,6 @@ interface TripRepositoryInterface extends RepositoryInterface
      *
      * Gets all the trips for the next month.
      **/
-    public function nextMonth();
+    public function nextMonth(Request $request);
 
 }

@@ -3,7 +3,9 @@
 angular.module('travelPlannerApp')
     .controller('tripPreviewCtrl', function($scope, $uibModalInstance, parentData) {
 
-        $scope.trip = parentData.trip;
+        $scope.trip = JSON.parse(unescape(parentData.trip));
+
+        console.log($scope.trip);
 
         $scope.close = function() {
             $uibModalInstance.dismiss('close');

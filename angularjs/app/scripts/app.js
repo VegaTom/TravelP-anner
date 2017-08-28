@@ -129,6 +129,9 @@ angular
         });
 
     })
+    .config(function($rootScopeProvider) {
+      $rootScopeProvider.digestTtl(15);
+    })
     .config(function($translateProvider, $localStorageProvider) {
         $translateProvider
             .translations('es', translation_es)

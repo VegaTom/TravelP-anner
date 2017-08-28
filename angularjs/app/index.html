@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Travel Planner</title>
+    <base href="/web/">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -33,6 +34,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/select2.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/notes.css">
     <link rel="stylesheet" href="styles/spinner.css">
     <link rel="stylesheet" href="styles/sk-circle.css">
     <!-- endbuild -->
@@ -118,7 +120,6 @@
     <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
     <script src="bower_components/jszip/dist/jszip.js"></script>
     <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/moment/locale/es.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
     <script src="bower_components/datatables.net/js/jquery.dataTables.js"></script>
@@ -192,19 +193,20 @@
     <script src="scripts/services/trip.service.js"></script>
     <script src="scripts/services/user.service.js"></script>
     <!-- directives -->
-    <script src="scripts/directives/trips-next-month/trips-next-month.directive.js"></script>
     <!-- controllers -->
     <script src="scripts/controllers/auth/login.js"></script>
     <script src="scripts/controllers/auth/register.js"></script>
     <script src="scripts/controllers/auth/forgot.js"></script>
     <script src="scripts/controllers/routes/index.js"></script>
     <script src="scripts/controllers/trips/index.js"></script>
+    <script src="scripts/controllers/trips/create.js"></script>
     <script src="scripts/controllers/trips/edit.js"></script>
     <script src="scripts/controllers/users/index.js"></script>
     <script src="scripts/controllers/users/edit.js"></script>
     <script src="scripts/controllers/profile/profile.js"></script>
     <script src="scripts/controllers/templates/change-password-modal.js"></script>
     <script src="scripts/controllers/templates/trip-preview-modal.js"></script>
+    <script src="scripts/controllers/welcome/welcome.js"></script>
     <!-- endbuild -->
 </body>
 

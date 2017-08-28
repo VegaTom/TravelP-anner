@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('travelPlannerApp')
-    .controller('indexTripsCtrl', function($scope, $rootScope, $location, $translate, tripService, userService, $q, ROLES, toaster, DTOptionsBuilder, DTColumnBuilder, $compile, sweetAlertService) {
+    .controller('indexTripsCtrl', function($scope, $rootScope, $location, $translate, tripService, userService, $q, ROLES, toaster, DTOptionsBuilder, DTColumnBuilder, $compile, sweetAlertService, $uibModal) {
 
         $scope.blockActions = false;
         $scope.dates = {};
@@ -12,7 +12,7 @@ angular.module('travelPlannerApp')
         }
 
         function actionsHtml(data) {
-            return  '<a uib-tooltip="' + $translate.instant('view') + '" ng-disabled="blockActions" ng-click="view(\'' + data.id + '\')"><img src="images/svg/eye-on.svg"></a>' +
+            return  '<a uib-tooltip="' + $translate.instant('view') + '" ng-disabled="blockActions" ng-click="view(\'' + escape(JSON.stringify(data)) + '\')"><img src="images/svg/eye-on.svg"></a>' +
                     '<a uib-tooltip="' + $translate.instant('edit') + '" ng-disabled="blockActions" ng-click="edit(\'' + data.id + '\')"><img src="images/svg/edit.svg"></a>' +
                     '<a uib-tooltip="' + $translate.instant('delete') + '" ng-disabled="blockActions" ng-click="destroy(\'' + data.id + '\')"><img src="images/svg/trash.svg"></a>';
         }
@@ -75,8 +75,23 @@ angular.module('travelPlannerApp')
           $scope.dtInstance.reloadData();
         };
 
-        $scope.view = function(id) {
-            $location.path('/trips/edit/' + id);
+        $scope.view = function(trip) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: 'views/dialogs/trip-preview.html',
+                controller: 'tripPreviewCtrl',
+                controllerAs: '$scope',
+                size: 'sm',
+                keyboard: true,
+                backdrop: true,
+                resolve: {
+                    parentData: function() {
+                        return {
+                            trip: trip,
+                        };
+                    }
+                }
+            });
         };
 
         $scope.edit = function(id) {

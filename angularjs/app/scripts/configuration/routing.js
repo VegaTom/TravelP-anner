@@ -5,7 +5,7 @@ angular.module('travelPlannerApp')
         $routeProvider
             .when('/', {
                 templateUrl: 'views/welcome.html',
-                controller: 'mainCtrl',
+                controller: 'welcomeCtrl',
                 data: {
                     authenticated: true,
                 }

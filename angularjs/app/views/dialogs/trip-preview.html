@@ -1,20 +1,42 @@
-<div class="modal-header black text-white">
-</div>
-<div class="modal-body green text-white text-center" id="modal-body">
-  <div class="container bootstrap snippet">
-    <div class="row">
-      <ul class="notes">
-        <li>
-          <div ng-class="randomClass">
-            <small>{{ trip.start_date }} - {{ trip.end_date }}</small>
-            <h4>{{ trip.destination }}</h4>
-            <p>{{ 'days_from_now' | | translate:daysFromNow }}</p>
-          </div>
-        </li>
-      </ul>
+<div class="col-md-10 col-md-offset-1 small-form">
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">{{ 'destination' | translate }}</label>
+      <div class="col-sm-10">
+        <span class="form-control">{{ trip.destination }}</span>
+      </div>
     </div>
   </div>
-</div>
-<div class="modal-footer black" style="text-align: center !important;">
-  <button class="btn btn-warning custom-button-2" type="button" ng-click="close()">{{ 'close' | translate }}</button>
+  <div class="row">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">{{ 'start_date' | translate }}</label>
+      <div class="col-sm-10">
+        <span class="form-control">{{ trip.start_date }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">{{ 'end_date' | translate }}</label>
+      <div class="col-sm-10">
+        <span class="form-control">{{ trip.end_date }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">{{ 'comment' | translate }}</label>
+      <div class="col-sm-10">
+        <textarea readonly class="form-control">{{ trip.comment }}</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-if="trip.time_left != 'N/A'" style="margin-top: 10px;">
+    <div class="form-group">
+      <label class="col-sm-2 control-label">{{ 'time_left' | translate }}</label>
+      <div class="col-sm-10">
+        <span class="form-control">{{ trip.time_left }}</span>
+      </div>
+    </div>
+  </div>
 </div>

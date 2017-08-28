@@ -1,7 +1,6 @@
 <?php
 namespace TravelPlanner\Transformers;
 
-use Carbon\Carbon;
 use League\Fractal;
 use TravelPlanner\Models\Trip;
 
@@ -29,7 +28,7 @@ class TripTransformer extends Fractal\TransformerAbstract
             'comment' => $trip->comment,
             'start_date' => $trip->start_date->toW3cString(),
             'end_date' => $trip->end_date->toW3cString(),
-            'time_left' => $trip->start_date > Carbon::now() ? $trip->start_date->diffForHumans() : null,
+            'time_left' => $trip->time_left,
         ];
     }
 

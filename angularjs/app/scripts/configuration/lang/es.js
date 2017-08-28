@@ -8,6 +8,7 @@ var translation_es = {
     back: 'Atrás',
     cancel: 'Cancelar',
     change_password: 'Cambiar contraseña',
+    comment: 'Comentario',
     content: 'Contenido',
     days_from_now: 'dentro de {{ days }} días',
     deactivate: 'Desactivar',
@@ -79,8 +80,9 @@ var translation_es = {
     trips: {
         section_name: 'Viajes',
         edit: 'Editar viaje',
-        info: 'Información´de viaje',
+        info: 'Información de viaje',
         new: 'Nuevo viaje',
+        next_month: 'Plan de viaje del mes próximo',
         question_delete: '¿Desea eliminar este viaje?',
         show: 'Ver viaje',
     },

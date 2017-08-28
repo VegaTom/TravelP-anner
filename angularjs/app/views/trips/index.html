@@ -5,10 +5,10 @@
 </div>
 <div class="row">
     <div class="col-sm-3 col-sm-offset-2">
-        <input ng-model="dates.start_date" type="datetime-local" placeholder="{{ 'start_date' | translate }}" class="form-control"/>
+        <input ng-model="dates.start_date" type="datetime-local" uib-tooltip="{{ 'start_date' | translate }}" class="form-control"/>
     </div>
     <div class="col-sm-3">
-        <input ng-model="dates.end_date" type="datetime-local" placeholder="{{ 'end_date' | translate }}" class="form-control"/>
+        <input ng-model="dates.end_date" type="datetime-local" uib-tooltip="{{ 'end_date' | translate }}" class="form-control"/>
     </div>
     <div class="col-md-1 col-md-offset-1" style="padding-right: 70px;">
         <a class="btn btn-sm btn-primary pull-right custom-button-2" ng-click="filter()">{{ 'filter' | translate }}</a>
@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1" style="margin-top: 10px;">
         <table dt-options="dtOptions" datatable="" dt-columns="dtColumns" dt-instance="dtInstance" class="table custab"></table>
     </div>
 </div>

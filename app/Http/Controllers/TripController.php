@@ -50,9 +50,9 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function nextMonth()
+    public function nextMonth(Request $request)
     {
-        return $this->response->withCollection($this->trips->nextMonth(), new TripTransformer);
+        return $this->response->withCollection($this->trips->nextMonth($request), new TripTransformer);
     }
 
     /**

@@ -32,4 +32,9 @@ class Trip extends BaseModel
         $this->attributes['end_date'] = Carbon::createFromFormat('Y-m-d\TH:i:sP', $date)->setTimezone('UTC');
     }
 
+    public function getTimeLeftAttribute()
+    {
+        return $this->start_date > Carbon::now() ? $this->start_date->diffForHumans() : 'N/A';
+    }
+
 }

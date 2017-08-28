@@ -5,7 +5,6 @@ namespace TravelPlanner\Repositories;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
-use Request as RequestFacade;
 use TravelPlanner\Extensions\Interfaces\Repositories\TripRepositoryInterface;
 use TravelPlanner\Models\Trip;
 
@@ -44,9 +43,9 @@ class TripRepository extends AbstractRepository implements TripRepositoryInterfa
      *
      * Gets all the trips for the next month.
      **/
-    public function nextMonth()
+    public function nextMonth(Request $request)
     {
-        return RequestFacade::user()->trips()
+        return $request->user()->trips()
             ->orderBy('start_date')->orderBy('end_date')->orderBy('destination')
             ->where('start_date', '>=', Carbon::now()->modify('first day of next month')->startOfDay())
             ->get();
